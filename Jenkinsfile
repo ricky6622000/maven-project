@@ -38,7 +38,7 @@ pipeline
                 steps
                 {
                     echo("This is Deployment")
-                    build 'jenkinstest'
+                    
                 }
             }
         }
