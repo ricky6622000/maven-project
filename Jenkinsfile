@@ -27,6 +27,7 @@ pipeline
                     success
                     {
                         echo("See checkstyle analysis result")
+                        checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                         archive '**/*.war'
                         junit '**/surefire-reports/*.xml'
                     }
