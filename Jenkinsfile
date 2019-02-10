@@ -1,6 +1,11 @@
 pipeline 
 {
         agent any 
+        tools
+        {
+            jdk "java8"
+            maven "maven"
+        }
         stages
         {
             stage('initializing')
@@ -15,6 +20,16 @@ pipeline
                 steps
                 {
                     echo("This is Build")
+                    sh label: '', script: 'mvn clean package checkstyle:checkstyle'
+                }
+                post
+                {
+                    success
+                    {
+                        echo("See checkstyle analysis result")
+                        archive '**/*.war'
+                        junit '**/surefire-reports/*.xml'
+                    }
                 }
             }
             stage('Deploy')
